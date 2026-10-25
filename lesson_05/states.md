@@ -2,16 +2,16 @@
 
 ФИО: Селезнев Александр  
 Группа: 9/2-РПО-25/1  
-Дата: …
+Дата: 25.10.2026
 
-После запуска `manager.py` заполните по `ps --ppid PID`:
+Снимок с ВМ после запуска `manager.py` (`~/procs-lab/states.md`):
 
-| Процесс | Состояние (stat) | Комментарий |
-|---|---|---|
-| hog.sh | R | грузит CPU |
-| worker.sh | S | спит в цикле |
-| paused.sh | T | остановлен SIGSTOP |
-| stubborn.sh | S | sleep в цикле |
-| lab-parent | S | sleep, дочерний зомби |
+| PID | Процесс | stat | Комментарий |
+|---|---|---|---|
+| 5805 | worker.sh | S+ | sleep в цикле |
+| 5806 | hog.sh | R+ | нагрузка на CPU |
+| 5807 | stubborn.sh | S+ | sleep, игнорирует первый TERM |
+| 5808 | paused.sh | T+ | остановлен SIGSTOP |
+| 5809 | lab-parent | S+ | sleep, дочерний зомби |
 
-Копия с ВМ: `~/procs-lab/states.md` (нужна для проверки 11/11).
+Кратко: hog **R**, paused **T**, worker и stubborn **S**.
