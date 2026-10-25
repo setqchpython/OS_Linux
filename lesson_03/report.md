@@ -169,7 +169,7 @@ journalctl -t sudo | grep -i "not in sudoers"
 Код результата:
 
 ```
-…
+OS45.eyJ2IjoxLCJuIjoi0KHQtdC70LXQt9C90LXQsiDQkNC70LXQutGB0LDQvdC00YAiLCJnIjoi0KDQn9CeMjUvMiIsImEiOlsiIiwiMjM0IiwiMCIsIjAyIiwiMTQ2IiwiIiwiMCIsIjAxMiIsIjAxMjQiLCIzNTZhIiwiIiwiNiIsIjAiLCIwIiwiIiwiIiwiIiwiMCIsIjAiLCIiLCIiLCIwMTIzNCIsIjAiLCIwMTIiLCIwIiwiMCIsIjc1MCIsIiIsIiIsIjAiLCIwMTIzNCIsIjUxMjMiLCIwMiIsIiIsIiIsIjAiLCIwMTIiLCIxMzRhIiwiMCIsIjAxMjMiXSwicyI6MjUsInQiOjQwLCJtIjozLCJkIjoiMjAyNi0xMC0yNVQwMDo0OSIsInUiOjExLCJvIjowLCJ4IjowfQ.473ef57eaa
 ```
 
 ## Перед сдачей
@@ -177,4 +177,4 @@ journalctl -t sudo | grep -i "not in sudoers"
 - [x] Проверка: 21 из 21.
 - [x] access-tests.md заполнен.
 - [x] access-model.md и setup-team.sh проверены на ВМ.
-- [ ] Код теста 04–05 в отчёте.
+- [x] Код теста 04–05 в отчёте.
