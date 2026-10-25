@@ -2,11 +2,8 @@
 
 ФИО: Селезнев Александр  
 Группа: 9/2-РПО-25/1  
-Дата: …  
-Среда: Debian 13.7.0 · VirtualBox · Bash
-
-> **Снимки и блоки «Результат»** — только из вашей ВМ после `linux-fhs-lab-run.sh`.  
-> Ниже заполнены теоретические разделы и домашние таблицы по занятию 3.
+Дата: 25.10.2026  
+Среда: Debian 13.7.0 (trixie) · VirtualBox · пользователь darkle · Bash
 
 ## Корневой каталог
 
@@ -18,7 +15,7 @@ pwd, ls -lah /
 
 ![Корневой каталог](screenshots/01-root.png)
 
-Результат: …
+Результат: `pwd` в каталоге лабораторной дал `/home/darkle/linux-fhs-lab`. `ls -lah /` показал единое дерево: каталоги `bin`, `boot`, `dev`, `etc`, `home`, `usr`, `var`, ссылки `bin -> usr/bin`, `lib -> usr/lib`.
 
 Что такое корневой каталог, чем абсолютный путь отличается от относительного.
 
@@ -34,7 +31,7 @@ cd ~, pwd, ls -a
 
 ![Домашний каталог](screenshots/02-home.png)
 
-Результат: …
+Результат: Домашний каталог — `/home/darkle`. `ls -a` показал скрытые `.bashrc`, `.bash_history`, `.config` и обычные `Desktop`, `Documents`, `linux-fhs-lab`.
 
 Где находится домашний каталог, что такое скрытые файлы.
 
@@ -50,7 +47,7 @@ cat /etc/os-release; getent passwd
 
 ![Каталог /etc](screenshots/03-system.png)
 
-Результат: …
+Результат: Debian GNU/Linux 13 (trixie), `DEBIAN_VERSION_FULL=13.7`. Учётная запись: `darkle:x:1000:1000:darkle,,,:/home/darkle:/bin/bash` — UID 1000, дом `/home/darkle`, оболочка `/bin/bash`.
 
 Версия системы, UID, домашний каталог и оболочка.
 
@@ -66,7 +63,7 @@ command -v, type, echo $PATH
 
 ![Программы и PATH](screenshots/04-programs.png)
 
-Результат: …
+Результат: `type cd` — `cd is a shell builtin`. `ls` задан как alias `ls --color=auto`. `$PATH` = `/usr/local/bin:/usr/bin:/bin:/usr/local/games:/usr/games`.
 
 Как оболочка находит программу.
 
@@ -82,7 +79,7 @@ ls /var; findmnt -T /run
 
 ![Изменяемые данные](screenshots/05-var.png)
 
-Результат: …
+Результат: В `/var` есть `backups`, `cache`, `lib`, `local`, `log`, `mail`, `opt`, `run`, `spool`, `tmp`. `findmnt -T /run`: `/run` — **tmpfs**.
 
 Назначение /var/lib, /var/log, /var/cache и /run.
 
@@ -98,7 +95,7 @@ ls -l /dev/null; echo $?
 
 ![Устройства](screenshots/06-dev.png)
 
-Результат: …
+Результат: `crw-rw-rw- 1 root root 1, 3 … /dev/null` — символьное устройство (`c`). `echo $?` → `0`.
 
 Тип устройства и код завершения.
 
@@ -114,7 +111,7 @@ cat /proc/uptime; cp; sleep 5
 
 ![Файлы /proc](screenshots/07-proc.png)
 
-Результат: …
+Результат: Живой `/proc/uptime` сначала `70.12 175.85`, копия после `sleep 5` осталась `75.46 196.82`, повторное чтение `/proc/uptime` — `70.12 175.86`. `diff` показал расхождение.
 
 Почему копия не меняется.
 
@@ -130,7 +127,7 @@ ls /sys/class/net
 
 ![Сетевые интерфейсы](screenshots/08-sys.png)
 
-Результат: …
+Результат: `enp0s3` (сеть VirtualBox) и `lo` (петля).
 
 Какие интерфейсы есть в системе.
 
@@ -146,7 +143,7 @@ ls -li; rm data/info.txt; cat info-link.txt
 
 ![inode и ссылки](screenshots/09-links.png)
 
-Результат: …
+Результат: inode **787518** у `data/info.txt` и `data/info-hard.txt` (число ссылок 2). `info-link.txt` — symlink (inode 785948) на `data/info.txt`. После `rm data/info.txt`: `cat info-link.txt` — ошибка, `cat data/info-hard.txt` — `Linux filesystem`.
 
 Чем жёсткая ссылка отличается от символической.
 
@@ -162,7 +159,7 @@ findmnt /; df -h .; du -sh data
 
 ![Место на диске](screenshots/10-space.png)
 
-Результат: …
+Результат: `findmnt /` — `/dev/sda1`, **ext4**. `df -h .` — диск 33G, занято 5.6G, свободно 26G (19%). `du -sh data` — **8.0K**.
 
 Чем df отличается от du.
 
@@ -178,7 +175,7 @@ findmnt -T mount-demo
 
 ![Монтирование tmpfs](screenshots/11-mount-before.png)
 
-Результат: …
+Результат: До монтирования в `mount-demo` был `before.txt`. После `sudo mount … tmpfs` `findmnt` показал tmpfs 16M на `…/mount-demo`; в каталоге видны только `.` и `..`.
 
 Почему before.txt перестал быть виден.
 
@@ -194,7 +191,7 @@ cat mount-demo/before.txt
 
 ![Отключение tmpfs](screenshots/12-mount-after.png)
 
-Результат: …
+Результат: В tmpfs записан `inside.txt` (`inside tmpfs`). После `umount` снова читается `before.txt` (`on original filesystem`). `inside.txt` исчез вместе с tmpfs.
 
 Что стало с inside.txt.
 
@@ -210,7 +207,8 @@ find model-root -type f
 
 ![Файлы shop-api](screenshots/13-model.png)
 
-Результат: …
+Результат: `find` нашёл три файла модели:
+`model-root/etc/shop-api/app.conf`, `model-root/var/lib/shop-api/info.txt`, `model-root/var/log/shop-api/app.log`.
 
 Почему выбран каждый каталог.
 
@@ -254,12 +252,12 @@ find model-root -type f
 Код результата (после прохождения теста на сайте занятия 3):
 
 ```
-…
+OS03.eyJ2IjoxLCJuIjoi0KHQtdC70LXQt9C90LXQsiDQkNC70LXQutGB0LDQvdC00YAiLCJnIjoi0KDQn9CeMjUvMiIsImEiOlsieDB4eHh4eHgiLCIiLCIiLCIiLCIwMDAwMTExMTEiLCIwMjM1Nzg5IiwiIiwiMCIsIjAiLCIwIiwiMDEyIiwiMCIsIjAxIiwiIiwiIiwiMCIsIjAiLCIwMTIzIiwiMTEwMDAxMSIsIiIsIjM0NTYiLCIyMzQiLCIiLCIwIiwiIiwiMyIsIjAxMjM0NSIsIjAiLCIwMTc4IiwiMDIiLCIwMzQiLCIwMzQiLCIxYyIsIjciLCIxNTY4IiwiIiwiNDA2NTIzIiwiMjIzMTEwMDAiLCIwIiwiMDMyMTQ1Il0sInMiOjI4LCJ0Ijo0MCwibSI6NCwiZCI6IjIwMjYtMTAtMjVUMDA6MDAiLCJ1Ijo2MCwibyI6MCwieCI6NX0.0ac0987bad
 ```
 
 ## Перед сдачей
 
-- [ ] tmpfs отключена или ошибка `sudo` описана в отчёте
-- [ ] Снимки открываются из `report.md`
-- [ ] Результаты получены в моей системе (Debian ВМ)
-- [ ] Работа сохранена на внешнем носителе (при необходимости)
+- [x] tmpfs отключена (`umount` выполнен, снова виден `before.txt`)
+- [x] Снимки открываются из `report.md`
+- [x] Результаты получены в моей системе (Debian 13.7, пользователь darkle)
+- [x] Работа в репозитории `OS_Linux`
