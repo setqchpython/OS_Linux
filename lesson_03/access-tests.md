@@ -2,18 +2,18 @@
 
 ФИО: Селезнев Александр  
 Группа: 9/2-РПО-25/1  
-Дата: …
+Дата: 25.10.2026
 
 | № | Пользователь | Команда | Ожидается | Получено |
 |---|---|---|---|---|
-| 1 | lead | `sudo -u lead touch /srv/mobile/src/lead.txt` | разрешено | … |
-| 2 | lead | `sudo -u lead ls /srv/mobile/reports` | разрешено | … |
-| 3 | dev | `sudo -u dev touch /srv/mobile/src/main.kt` | разрешено | … |
-| 4 | dev | `sudo -u dev ls /srv/mobile/reports` | отказ (Permission denied) | … |
-| 5 | qa | `sudo -u qa touch /srv/mobile/reports/test-1.md` | разрешено | … |
-| 6 | qa | `sudo -u qa ls /srv/mobile/src` | отказ (Permission denied) | … |
-| 7 | guest | `sudo -u guest ls /srv/mobile/src` | отказ (Permission denied) | … |
-| 8 | guest | `sudo -u guest ls /srv/mobile/reports` | отказ (Permission denied) | … |
+| 1 | lead | `sudo -u lead touch /srv/mobile/src/lead.txt` | разрешено | разрешено |
+| 2 | lead | `sudo -u lead ls /srv/mobile/reports` | разрешено | разрешено |
+| 3 | dev | `sudo -u dev touch /srv/mobile/src/main.kt` | разрешено | разрешено |
+| 4 | dev | `sudo -u dev ls /srv/mobile/reports` | отказ (Permission denied) | Permission denied |
+| 5 | qa | `sudo -u qa touch /srv/mobile/reports/test-1.md` | разрешено | разрешено |
+| 6 | qa | `sudo -u qa ls /srv/mobile/src` | отказ (Permission denied) | Permission denied |
+| 7 | guest | `sudo -u guest ls /srv/mobile/src` | отказ (Permission denied) | Permission denied |
+| 8 | guest | `sudo -u guest ls /srv/mobile/reports` | отказ (Permission denied) | Permission denied |
 
 ## Схема ролей
 
@@ -26,6 +26,6 @@
 
 ## Почему постоянная работа под root опасна
 
-1. Ошибка в команде (`rm -rf`) уничтожает систему без запроса прав.
-2. Программы получают полный доступ — компрометация одного сервиса = вся машина.
-3. Нет аудита «кто что сделал» — все действия выглядят как root (принцип минимальных привилегий).
+1. Ошибка в команде (`rm -rf`) может уничтожить систему без дополнительного запроса прав.
+2. Скомпрометированная программа получает полный доступ ко всей машине.
+3. Действия не привязаны к человеку — нарушается принцип минимальных привилегий и аудит.
