@@ -14,8 +14,8 @@ sleep 10
 LOAD_SYM="$(uptime)"
 WEB_SLOW="$(tail -3 "$LAB/web.log")"
 
-renice -n 19 -p $(pgrep -f "$LAB/bin/report-calc") >/dev/null 2>&1 || true
-sleep 5
+renice -n 19 -p $(pgrep -f "$LAB/bin/report-calc.sh") >/dev/null 2>&1 || true
+sleep 12
 WEB_RENICE="$(tail -3 "$LAB/web.log")"
 
 kill $(pgrep -f "$LAB/bin/report-builder") 2>/dev/null || true
@@ -29,6 +29,7 @@ kill "$S" 2>/dev/null || true
 sleep 2
 kill -9 "$S" 2>/dev/null || true
 rm -f "$LAB/sync.lock"
+sleep 2
 
 NOW="$(date +%T)"
 cat > "$LAB/postmortem.md" <<EOF

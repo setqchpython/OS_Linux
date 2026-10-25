@@ -9,6 +9,8 @@ sudo apt install -y python3-pil util-linux   # taskset, PIL для PNG
 
 bash capture-lesson06.sh
 grep "Итог:" _capture/terminal.log    # нужно 11 из 11
+# если 8/11 или меньше:
+bash finish-diag-lab.sh
 python3 generate-screenshots.py
 ls screenshots/
 ```

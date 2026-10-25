@@ -70,42 +70,19 @@ run ps -eo pid,ppid,ni,stat,%cpu,cmd --sort=-%cpu | head -6
 run bash -c "pstree -p \$(pgrep -f incident.py | head -1)"
 
 section "09-lab-fix"
-run bash -c "renice -n 19 -p \$(pgrep -f report-calc)"
-run bash -c 'sleep 5; tail -3 '"$LAB/web.log"
-run bash -c "kill \$(pgrep -f report-builder); sleep 1; pgrep -af report || true"
-run bash -c "kill \$(pgrep -f report-calc); sleep 3; tail -2 $LAB/web.log"
+CALC="$LAB/bin/report-calc.sh"
+BUILD="$LAB/bin/report-builder.sh"
+run bash -c "renice -n 19 -p \$(pgrep -f '$CALC') 2>&1; sleep 12; tail -3 '$LAB/web.log'"
+run bash -c "kill \$(pgrep -f '$BUILD' | head -1) 2>/dev/null; sleep 1; pgrep -af report || true"
+run bash -c "kill \$(pgrep -f '$CALC') 2>/dev/null; sleep 3; tail -2 '$LAB/web.log'"
 S=$(cat "$LAB/sync.lock" 2>/dev/null || echo "")
 if [ -n "$S" ]; then
-  run bash -c "S=$S; kill \$S; sleep 2; ps -o pid,stat,cmd -p \$S || true"
-  run bash -c "S=$S; kill -9 \$S; rm -f $LAB/sync.lock"
+  run bash -c "kill $S 2>/dev/null; sleep 2; ps -o pid,stat,cmd -p $S || true"
+  run bash -c "kill -9 $S 2>/dev/null; rm -f '$LAB/sync.lock'; sleep 2"
 fi
 run cat "$LAB/exit-codes.log"
 
-NOW="$(date +%T)"
-LOAD_SYM="$(uptime)"
-WEB_SLOW="$(tail -3 "$LAB/web.log")"
-cat > "$LAB/postmortem.md" <<EOF
-# Postmortem · учебный сервер diag-lab
-
-## Симптом
-
-$NOW · $LOAD_SYM
-Медленный web-worker (ожидали 60–100 ms):
-$WEB_SLOW
-
-## Причина
-
-Лишние report-calc на все ядра; sync-agent завис с sync.lock.
-
-## Действия
-
-renice 19 → TERM report-builder/calc → KILL sync-agent → rm sync.lock. web-worker не останавливали.
-
-## Профилактика
-
-nice 19 для отчётов; контроль потомков; таймаут sync.lock.
-EOF
-cp "$LAB/postmortem.md" "$ROOT/postmortem.md"
+bash "$ROOT/finish-diag-lab.sh" >> "$LOG" 2>&1 || true
 
 section "10-lab-check"
 run bash "$ROOT/diag-lab-kit/diag-lab-check.sh"
