@@ -1,2 +1,6 @@
-# Заполняется на ВМ в ~/files-lab/answers.txt после квеста.
-# Скопируй сюда содержимое: cat ~/files-lab/answers.txt
+/home/darkle/files-lab/inbox/archive/2025/budget.csv
+/home/darkle/files-lab/inbox/archive/2025/plan.txt
+/home/darkle/files-lab/inbox/data-old.csv
+token=lab-only
+ls -S ~/files-lab/sorted/images
+/etc/os-release
