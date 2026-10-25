@@ -1,0 +1,2 @@
+# Заполняется на ВМ в ~/files-lab/answers.txt после квеста.
+# Скопируй сюда содержимое: cat ~/files-lab/answers.txt
