@@ -22,7 +22,14 @@ mkdir -p "$ROOT/_capture"
   sleep 2
   uptime
   free -h
-  echo "=== /usr/bin/time ==="
-  /usr/bin/time -f '%e s, %M KB' python3 -c 'sum(range(20_000_000))'
+  echo "=== GNU time (-f %e %M) ==="
+  if [ -x /usr/bin/time ]; then
+    /usr/bin/time -f '%e s, %M KB' python3 -c 'sum(range(20_000_000))'
+  else
+    echo "Нет /usr/bin/time — установите: sudo apt install -y time"
+    echo "Пока встроенный time bash:"
+    TIMEFORMAT='real %R s'
+    time python3 -c 'sum(range(20_000_000))'
+  fi
 } | tee "$LOG"
 echo "Лог: $LOG — перенесите факты в incident.md"

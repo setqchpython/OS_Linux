@@ -4,7 +4,7 @@
 cd ~/OS_Linux
 git fetch origin && git reset --hard origin/main
 cd lesson_06
-sudo apt install -y python3-pil util-linux   # taskset, PIL для PNG
+sudo apt install -y python3-pil util-linux time   # taskset, PIL, GNU time
 # опционально для снимка 03: sudo apt install -y htop
 
 bash capture-lesson06.sh

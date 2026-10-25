@@ -51,7 +51,12 @@ section "06-time"
 run bash -c 'time sleep 2'
 run bash -c 'time python3 -c "sum(range(30_000_000))"'
 run bash -c 'time find /usr > /dev/null'
-run /usr/bin/time -f '%e s, %M KB' python3 -c 'b = bytearray(300_000_000)'
+if [ -x /usr/bin/time ]; then
+  run /usr/bin/time -f '%e s, %M KB' python3 -c 'b = bytearray(300_000_000)'
+else
+  echo "(sudo apt install -y time — для /usr/bin/time на снимке 06-time)" >> "$LOG"
+  run bash -c 'TIMEFORMAT="real %R s"; time python3 -c "b = bytearray(300_000_000)"'
+fi
 
 section "07-memory"
 run bash -c 'free -h; python3 -c "import time; b = bytearray(600_000_000); time.sleep(120)" & MP=$!; sleep 3; free -h; ps -eo pid,user,stat,%mem,rss,cmd --sort=-rss | head -4; kill $MP; sleep 1; free -h'
