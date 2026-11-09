@@ -1,30 +1,34 @@
 # Курсовая работа · бланк сдачи
 
-**Студент:** ___
-**Группа:** ___
-**ТЗ:** № ___ · сервер ___
-**Я в паре:** практикант 1 / практикант 2
-**Напарник:** ___, GitHub @___
+**Студент:** Селезнев Александр
+**Группа:** РПО25/1
+**ТЗ:** № 1 helpdesk-01, № 2 billing-02, № 3 ops-03
+**Я в паре:** работу выполнил один, без второго практиканта
+**Напарник:** нет
+**GitHub:** @setqchpython
 
 ## Ссылки
 
 | Что | Ссылка |
 |---|---|
-| Репозиторий пары | ___ |
-| Мои коммиты в репозитории пары | ___ |
-| `acceptance.txt` | ___ |
+| ТЗ 1 | https://github.com/setqchpython/OS_Linux/tree/main/kursovaya_rabota/tz-01-helpdesk |
+| ТЗ 2 | https://github.com/setqchpython/OS_Linux/tree/main/kursovaya_rabota/tz-02-billing |
+| ТЗ 3 | https://github.com/setqchpython/OS_Linux/tree/main/kursovaya_rabota/tz-03-offboarding |
+| `acceptance.txt` ТЗ 1 | https://github.com/setqchpython/OS_Linux/blob/main/kursovaya_rabota/tz-01-helpdesk/acceptance.txt |
+| `acceptance.txt` ТЗ 2 | https://github.com/setqchpython/OS_Linux/blob/main/kursovaya_rabota/tz-02-billing/acceptance.txt |
+| `acceptance.txt` ТЗ 3 | https://github.com/setqchpython/OS_Linux/blob/main/kursovaya_rabota/tz-03-offboarding/acceptance.txt |
 
-**Итог приёмки на финальном прогоне:** ___ из ___
-**Задачи по выбору:** не делали / сделали `___`
+**Итог приёмки на финальном прогоне:** ТЗ 1 — 25 из 25, ТЗ 2 — 12 из 12, ТЗ 3 — 17 из 17
+**Задачи по выбору:** сделаны. ТЗ 1: `optional/check-access.sh`, `optional/rollback.md`. ТЗ 2: `optional/disk-watch.sh`, `optional/snapshot.sh`. ТЗ 3: `optional/lock-user.sh`, `optional/access-review.md`.
 
 ## Перед отправкой
 
-- [ ] Репозиторий публичный, описание и Topics заполнены, напарник в Collaborators
-- [ ] README начинается с таблицы: состав пары, кто за что отвечает, итог приёмки
-- [ ] Финальный прогон сделан на стенде, развёрнутом заново, вывод в `acceptance.txt`
-- [ ] В журнале работ у команд стоят номера требований, ошибки и откаты записаны
-- [ ] Все снимки из раздела 4.1 ТЗ лежат в `screenshots/`
-- [ ] В документах нет пустых `___` и `…` из шаблонов
+- [x] Решения трёх заданий лежат в `kursovaya_rabota`, репозиторий публичный
+- [x] README каждого задания начинается с таблицы: автор, что выполнено, итог приёмки
+- [x] Финальный прогон сделан на стенде, развёрнутом заново, вывод в `acceptance.txt`
+- [x] В журнале работ у команд стоят номера требований
+- [x] Снимки из задания лежат в `screenshots/`
+- [x] В документах нет пустых `___` из шаблона бланка
 
-**Не получилось:** ___
-**ИИ:** не использовал / использовал для ___
+**Не получилось:** приёмка снята на Debian 13, в задании указан Ubuntu 24.04. В ТЗ 3 `audit-user.sh` на этом прогоне не напечатал новый setuid, хотя копия `kbash` без этого бита попала в резервный каталог. Второго практиканта нет, повтор его части не делался.
+**ИИ:** использовал для черновика скриптов и текста документов. Вывод команд в паспорте, журнале и `acceptance.txt` снят с виртуальной машины 2026-11-09.
